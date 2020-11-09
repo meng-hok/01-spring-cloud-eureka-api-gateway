@@ -1,0 +1,1 @@
+java -jar gateway/build/libs/*.jar
