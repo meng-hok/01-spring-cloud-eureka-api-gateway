@@ -12,4 +12,9 @@ public class HomeController {
         return "welcome to microservice";
     }
 
+    @ResponseBody
+    @RequestMapping("/v1/api/index")
+    public Object apiResponse () {
+        return "welcome to /v1/api/index";
+    }
 }
