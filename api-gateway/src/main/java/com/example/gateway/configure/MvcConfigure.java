@@ -1,5 +1,6 @@
 package com.example.gateway.configure;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +11,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfigure implements WebMvcConfigurer {
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor().addPathPatterns("/index/**");
-//    }
+    @Autowired
+    private OutterInterceptor outterInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(outterInterceptor).addPathPatterns("/**");
+    }
     @Bean
     @Order(1)
     public FilterRegistrationBean<OutterFilter> loggingFilter(){
